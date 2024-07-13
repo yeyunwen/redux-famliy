@@ -1,5 +1,7 @@
 //@ts-check
 
+import isPlainObject from "./utils/isPlainObject.js";
+
 /**
  *
  * @param {function} reducer reducer
@@ -15,10 +17,13 @@ const createStore = (reducer, initalState) => {
   const listeners = [];
 
   if (typeof reducer !== "function") {
-    throw new Error("reducer is not a function");
+    throw new TypeError("reducer is not a function");
   }
 
   const dispatch = (action) => {
+    if (!isPlainObject(action)) {
+      throw new TypeError("action is not a plain object");
+    }
     currentState = reducer(currentState, action);
     listeners.forEach((listener) => listener());
   };
