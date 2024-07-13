@@ -1,6 +1,7 @@
 import { actionType } from "../action/count.js";
 
 export const countReducer = (state = 0, action) => {
+  console.log(state, action);
   switch (action.type) {
     case actionType.INCREMENT:
       return state + 1;

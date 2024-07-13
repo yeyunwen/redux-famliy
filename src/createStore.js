@@ -1,11 +1,12 @@
 //@ts-check
 
+import ActionTypes from "./utils/actionTypes.js";
 import isPlainObject from "./utils/isPlainObject.js";
 
 /**
  *
  * @param {function} reducer reducer
- * @param {any} initalState 初始化状态
+ * @param {any} [initalState] 初始化状态
  * @returns {{
  *    dispatch: (action: any) => void,
  *    getState: () => any,
@@ -37,7 +38,7 @@ const createStore = (reducer, initalState) => {
     };
   };
 
-  dispatch({ type: "@@redux/INIT" });
+  dispatch({ type: ActionTypes.INIT });
   return {
     dispatch,
     getState,
