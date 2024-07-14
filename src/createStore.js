@@ -6,19 +6,35 @@ import isPlainObject from "./utils/isPlainObject.js";
 /**
  *
  * @param {function} reducer reducer
- * @param {any} [initalState] 初始化状态
+ * @param {any} [preloadedState] 初始化状态
+ * @param {function} [enhancer] 中间件
  * @returns {{
  *    dispatch: (action: any) => void,
  *    getState: () => any,
  *    subscribe: (fn: () => void) => void,
  * }}
  */
-const createStore = (reducer, initalState) => {
-  let currentState = initalState;
+const createStore = (reducer, preloadedState, enhancer) => {
+  let currentState = preloadedState;
   const listeners = [];
 
   if (typeof reducer !== "function") {
     throw new TypeError("reducer is not a function");
+  }
+  if (typeof preloadedState === "function" && typeof enhancer === "function") {
+    throw new TypeError("preloadedState is not a function");
+  }
+  if (typeof preloadedState === "function" && typeof enhancer === "undefined") {
+    enhancer = preloadedState;
+    preloadedState = undefined;
+    return enhancer(createStore)(reducer, preloadedState);
+  }
+
+  if (typeof enhancer !== "undefined") {
+    if (typeof enhancer !== "function") {
+      throw new TypeError("enhancer is not a function");
+    }
+    return enhancer(createStore)(reducer, preloadedState);
   }
 
   const dispatch = (action) => {
