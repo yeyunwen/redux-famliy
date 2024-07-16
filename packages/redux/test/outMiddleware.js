@@ -1,4 +1,3 @@
-// @ts-check
 import {
   createStore,
   bindActionCreators,
@@ -7,7 +6,7 @@ import {
 } from "../src/index.js";
 import { studentReducer } from "./reducer/student.js";
 import { createFetchStudentsAction } from "./action/student.js";
-import thunk from "../middleware/redux-thunk.js";
+import thunk from "@redux-famliy/redux-thunk";
 import logger from "redux-logger";
 
 const { createLogger } = logger;

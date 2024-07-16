@@ -1,17 +1,21 @@
 {
-  "name": "redux-famliy",
-  "version": "1.0.0",
+  "name": "@redux-famliy/redux",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "redux": "^5.0.1",
-    "redux-logger": "^3.0.6"
+  "dependencies": {
+    "@redux-famliy/redux-thunk": "workspace:*"
   }
 }
