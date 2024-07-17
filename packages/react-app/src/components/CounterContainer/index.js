@@ -1,6 +1,4 @@
-import React, { Component } from "react";
 import Counter from "./Counter";
-import store from "../../store";
 import {
   getIncrementAction,
   getDecrementAction,
@@ -22,27 +20,5 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-// class CounterContainer extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = mapStateToProps(store.getState());
-//     store.subscribe(() => {
-//       this.setState(mapStateToProps(store.getState()));
-//     });
-//   }
-//   render() {
-//     const { onAddClick, onDecreaseClick } = mapDispatchToProps(store.dispatch);
-//     return (
-//       <>
-//         <h1>CounterContainer</h1>
-//         <Counter
-//           count={this.state.count}
-//           onAddClick={onAddClick}
-//           onDecreaseClick={onDecreaseClick}
-//         ></Counter>
-//       </>
-//     );
-//   }
-// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
